@@ -5,6 +5,23 @@
     grid-list-xl
   >
     <v-layout wrap>
+
+      <v-flex
+        md12
+        sm12
+        lg12
+      >
+        <!-- <button v-on:click="fetchResource()"></button> -->
+        <a href="" @click.prevent="fetchResource">Fetch</a><br/>
+        <br/>
+        <!-- <a href="" @click.prevent="fetchResource">Fetch</a><br/> -->
+        <h4>Results</h4>
+        <p v-for="r in resources" :key="r.timestamp">
+          Server Timestamp: {{r.timestamp }}
+        </p>
+        <p>{{error}}</p>
+      </v-flex>
+
       <v-flex
         md12
         sm12
@@ -360,6 +377,8 @@
 </template>
 
 <script>
+import $backend from '../backend/backend'
+
 export default {
   data () {
     return {
@@ -501,12 +520,23 @@ export default {
         0: false,
         1: false,
         2: false
-      }
+      },
+      // api data
+      resources: [],
+      error: ''
     }
   },
   methods: {
     complete (index) {
       this.list[index] = !this.list[index]
+    },
+    fetchResource () {
+      $backend.fetchResource()
+        .then(responseData => {
+          this.resources.push(responseData)
+        }).catch(error => {
+          this.error = error.message
+        })
     }
   }
 }
