@@ -29,3 +29,11 @@ yarn build
 python run.py
 ```
 
+
+# Special thanks
+
+[flask-vuejs-template](https://github.com/gtalarico/flask-vuejs-template)
+
+[vuetify-material-dashboard](https://github.com/creativetimofficial/vuetify-material-dashboard)
+
+[material-dashboard](https://github.com/creativetimofficial/material-dashboard)
